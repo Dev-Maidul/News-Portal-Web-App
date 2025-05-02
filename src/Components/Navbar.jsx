@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { Link, NavLink } from "react-router";
 import userIcon from "../assets//user.png";
 import { AuthContext } from "../ContextProvider/AuthProvider";
-import Button from "daisyui/components/button";
 
 const Navbar = () => {
   const { user,logOut } = useContext(AuthContext);
@@ -30,7 +29,7 @@ const Navbar = () => {
         </NavLink>
       </div>
       <div className="nav-right flex items-center gap-3">
-        <img src={userIcon} alt="" />
+        <img className="w-20 rounded-full" src={`${user ? user.photoURL :userIcon}`} alt="" />
         
         {
             user ? <button onClick={handleLogout} className="btn btn-primary p-6 text-lg">Log Out</button>: <Link to="/auth/login" className="btn btn-primary p-6 text-lg">

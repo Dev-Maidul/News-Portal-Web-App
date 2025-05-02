@@ -2,6 +2,7 @@ import React from 'react';
 import { FaRegEye, FaStar } from 'react-icons/fa';
 import { FaShareAlt } from "react-icons/fa";
 import { FaRegBookmark } from "react-icons/fa";
+import { Link } from 'react-router';
 const NewsCard = ({ news }) => {
   const {
     title,
@@ -10,6 +11,7 @@ const NewsCard = ({ news }) => {
     author,
     thumbnail_url,
     details,
+    id,
   } = news;
 
   return (
@@ -45,7 +47,8 @@ const NewsCard = ({ news }) => {
           {details.length > 200 ? (
             <>
               {details.slice(0, 200)}...
-              <span className="text-blue-500 cursor-pointer"> Read More</span>
+              <Link to={`/news-details/${id}`} className="text-blue-500 cursor-pointer"> Read More</Link>
+
             </>
           ) : (
             details

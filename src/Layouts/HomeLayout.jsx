@@ -1,12 +1,14 @@
 import React from "react";
-import { Outlet } from "react-router";
+import { Outlet, useNavigate } from "react-router";
 import Header from "../Components/Header";
 import MarqueText from "../Components/MarqueText";
 import Navbar from "../Components/Navbar";
 import LeftAside from "../Pages/Home/LeftAside";
 import RightAside from "../Pages/Home/RightAside";
+import Loading from "daisyui/components/loading";
 
 const HomeLayout = () => {
+  const{state}=useNavigate();
   return (
     <div>
       <header>
@@ -24,7 +26,10 @@ const HomeLayout = () => {
             <LeftAside></LeftAside>
         </aside>
         <section className="main col-span-6">
-          <Outlet></Outlet>
+          {
+            state=='loading'? <Loading></Loading>:<Outlet></Outlet>
+          }
+          
         </section>
         <aside className="col-span-3 top-0 h-fit sticky">
             <RightAside></RightAside>

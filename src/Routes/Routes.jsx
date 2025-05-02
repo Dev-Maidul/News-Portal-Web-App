@@ -8,6 +8,9 @@ import CategoryNew from "../Components/CategoryNew";
 import Login from "../Components/Login";
 import Register from "../Components/Register";
 import AuthLayout from "../Layouts/AuthLayout";
+import NewsDetails from "../Pages/Home/NewsDetails";
+import PrivateRoute from "../ContextProvider/PrivateRoute";
+import Loading from "../Components/Loading";
 
   
   
@@ -24,6 +27,7 @@ import AuthLayout from "../Layouts/AuthLayout";
             path: '/category/:id',
             Component: CategoryNew,
             loader: ()=>fetch('/news.json'), 
+            hydrateFallbackElement:<Loading></Loading>
         },
       ]
     },
@@ -44,6 +48,14 @@ import AuthLayout from "../Layouts/AuthLayout";
     {
       path: "/career",
       element: <div>News</div>,
+    },
+    {
+      path: "/news-details/:id",
+      hydrateFallbackElement: <Loading></Loading>,
+      element: <PrivateRoute>
+        <NewsDetails></NewsDetails>
+      </PrivateRoute>,
+      loader: ()=>fetch('/news.json'),
     },
     {
       path: "/*",
